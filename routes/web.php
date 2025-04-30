@@ -7,3 +7,6 @@ Route::get('/', function () {
 });
 
 
+Route::get('/crear-cuenta', function () {
+    return view('auth.register');
+});
