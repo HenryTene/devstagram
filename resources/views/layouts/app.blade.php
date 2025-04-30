@@ -10,13 +10,31 @@
 
 </head>
 
-<body>
+<body class="bg-gray-100">
 
-    <h1 class="text-4xl font-extrabold" >@yield('titulo')</h1>
+    <header class="p-5 border-b bg-white shadow">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-black">
+                DevStagram
+            </h1>
+            <nav class="flex gap-2 items-center">
+                <a class="font-bold uppercase text-gray-600" href="#">Login</a>
+                <a class="font-bold uppercase text-gray-600" href="#">Crear cuenta</a>
+            </nav>
 
-    <hr>
-    <h2>@yield('contenido')</h2>
+        </div>
 
+    </header>
+    <main class = "container mx-auto mt-10">
+        <h2 class="text-3xl font-black text-center mb-10">
+            @yield('titulo')
+        </h2>
+        @yield('contenido')
+
+    </main>
+    <footer class="text-center p-5 text-gray-500 font-bold uppercase mt-10">
+        DevStagram - Todos los derechos reservados {{ now()->year }}
+    </footer>
 </body>
 
 </html>
