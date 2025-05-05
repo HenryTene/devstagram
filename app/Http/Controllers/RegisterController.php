@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class RegisterController extends Controller
 {
+    use ValidatesRequests;
     //
     public  function index()
     {
@@ -14,11 +15,13 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request);
-        dd($request->get('name'));
-        dd($request->get('email'));
-        dd($request->get('password'));
-        dd($request->get('password_confirmation'));
-        // dd($request->all());
+
+
+        // Validate the request data
+        $this->validate($request, [
+            'name' => 'required|unique:users|max:30',
+            'email' => 'required|email|unique:users|max:255',
+            'password' => 'required|min:6|confirmed',
+        ]);
     }
 }
