@@ -13,7 +13,7 @@ Regístrate en DevStagram
         </div>
 
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">
-            <form action="{{ route('register') }}" method="POST">
+            <form action="{{ route('register') }}" method="POST" novalidate>
                 @csrf
                 <div class="mb-5">
                     <label for="name" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -43,6 +43,9 @@ Regístrate en DevStagram
                             placeholder="Tu nombre de usuario"
                             class="border p-3 w-full rounded-lg "
                     />
+                    @error('username')
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-5">
@@ -56,6 +59,9 @@ Regístrate en DevStagram
                             placeholder="Tu email de Registro"
                             class="border p-3 w-full rounded-lg "
                     />
+                    @error('email')
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-5">
@@ -69,6 +75,9 @@ Regístrate en DevStagram
                             placeholder="Password de Registro"
                             class="border p-3 w-full rounded-lg"
                     />
+                    @error('password')
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-5">
