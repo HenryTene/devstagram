@@ -41,7 +41,8 @@ Regístrate en DevStagram
                             name="username"
                             type="text"
                             placeholder="Tu nombre de usuario"
-                            class="border p-3 w-full rounded-lg "
+                            class="border p-3 w-full rounded-lg  @error('username') border-red-500 @enderror"
+                            value="{{ old('username') }}"
                     />
                     @error('username')
                     <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
@@ -57,7 +58,8 @@ Regístrate en DevStagram
                             name="email"
                             type="email"
                             placeholder="Tu email de Registro"
-                            class="border p-3 w-full rounded-lg "
+                            class="border p-3 w-full rounded-lg  @error('email') border-red-500 @enderror"
+                            value="{{ old('email') }}"
                     />
                     @error('email')
                     <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
@@ -73,7 +75,8 @@ Regístrate en DevStagram
                             name="password"
                             type="password"
                             placeholder="Password de Registro"
-                            class="border p-3 w-full rounded-lg"
+                            class="border p-3 w-full rounded-lg  @error('password') border-red-500 @enderror"
+
                     />
                     @error('password')
                     <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
