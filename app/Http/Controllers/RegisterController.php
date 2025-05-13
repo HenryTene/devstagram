@@ -38,5 +38,9 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+
+        //Redireccionar al usuario
+        return redirect()->route('posts.index')->with('status', 'Usuario creado correctamente');
     }
 }
