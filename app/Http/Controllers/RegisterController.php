@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class RegisterController extends Controller
 {
@@ -18,6 +19,9 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
+
+        //Modificar el request
+        $request->request->add(['username' => Str::slug($request->username)]);
 
 
         // Validate the request data
