@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -38,7 +39,10 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
+        Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
 
         //Redireccionar al usuario
         return redirect()->route('posts.index')->with('status', 'Usuario creado correctamente');
