@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -17,10 +18,18 @@ class LoginController extends Controller
     }
 
     public function store(Request $request)
-     {
-        $this->validate($request,[
+    {
+        $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
         ]);
-     }
+
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            // Si falla, redirige con error
+            return back()->with('mensaje', 'Credenciales incorrectas');
+        } else {
+            // Si tiene éxito, redirige al home
+            return redirect()->route('posts.index')->with('status', 'Bienvenido');
+        }
+    }
 }
