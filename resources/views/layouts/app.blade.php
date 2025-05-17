@@ -29,7 +29,7 @@
                             {{ auth()->user()->username }}
                         </span>
                     </a>
-                    <a href="{{route('register')}}" class="font-bold uppercase text-gray-600" >
+                    <a href="{{route('logout')}}" class="font-bold uppercase text-gray-600" >
                         Cerrar Sesión
                     </a>
                 </nav>
@@ -37,7 +37,7 @@
 
             @guest()
                 <nav class="flex gap-2 items-center">
-                    <a class="font-bold uppercase text-gray-600" href="#">
+                    <a class="font-bold uppercase text-gray-600" href="{{route('login')}}" >
                         Login
                     </a>
                     <a href="{{route('register')}}" class="font-bold uppercase text-gray-600" >
