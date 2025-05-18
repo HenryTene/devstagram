@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 use Illuminate\Routing\Controller;
 
 class PostController extends Controller
@@ -17,7 +18,9 @@ class PostController extends Controller
 
     public function index(User $user)
     {
-        //dd($user->username);
-        return view('dashboard');
+        //dd(Auth::user());
+        return view('dashboard',[
+            'user' => $user,
+        ]);
     }
 }

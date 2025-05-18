@@ -29,7 +29,7 @@ class LoginController extends Controller
             return back()->with('mensaje', 'Credenciales incorrectas');
         } else {
             // Si tiene éxito, redirige al home
-            return redirect()->route('posts.index')->with('status', 'Bienvenido');
+            return redirect()->route('posts.index', Auth::user()->username );
         }
     }
 }
