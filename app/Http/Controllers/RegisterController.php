@@ -45,6 +45,6 @@ class RegisterController extends Controller
         ]);
 
         //Redireccionar al usuario
-        return redirect()->route('posts.index')->with('status', 'Usuario creado correctamente');
+        return redirect()->route('posts.index', Auth::user()->username)->with('mensaje', 'Bienvenido a DevStagram, sube tus fotos');
     }
 }
