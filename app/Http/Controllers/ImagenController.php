@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 class ImagenController extends Controller
 {
     //
-    public function store()
+    public function store(Request $request)
     {
-        return "Imagen Controller";
+        //return "Imagen Controller";
+        $imagen = $request->file('file');
+        return response()->json(['imagen'=>$imagen->extension()]);
     }
 }
