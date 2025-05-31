@@ -30,4 +30,14 @@ class PostController extends Controller
             'user' => Auth::user(),
         ]);
     }
+
+    public function store(Request $request)
+    {
+        //dd('Creando publicacion');
+        $request->validate([
+            'titulo' => 'required|max:255',
+            'descripcion' => 'required',
+            'imagen' => 'required|image|max:2048', // Validación de imagen
+        ]);
+    }
 }
