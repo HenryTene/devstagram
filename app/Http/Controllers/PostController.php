@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -39,5 +40,13 @@ class PostController extends Controller
             'descripcion' => 'required',
             'imagen' => 'required', // Validación de imagen
         ]);
+        Post::create([
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'imagen' => $request->imagen,
+            'user_id' => Auth::id(),
+        ]);
+
+        return redirect()->route('posts.index',Auth::user()->username);
     }
 }
