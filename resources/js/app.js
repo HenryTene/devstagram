@@ -11,16 +11,12 @@ const dropzone = new Dropzone("#dropzone", {
     uploadMultiple: false,
 });
 
-dropzone.on("sending", function (file, xhr, formData) {
-    // formData.append('user_id', 1);
-    console.log("Enviando archivo:", formData);
-});
+
 
 dropzone.on("success", function (file, response) {
-    console.log("Archivo subido exitosamente:", response);
+    //document.querySelector("#imagen").value = response.imagen;
+    document.querySelector('[name="imagen"]').value = response.imagen;
 });
 
-dropzone.on("error", function (file, message) {
-    console.log("Error al subir el archivo:", message);
-});
+
 dropzone.on("removedfile", function () {});
