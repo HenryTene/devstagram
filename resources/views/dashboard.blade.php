@@ -30,4 +30,19 @@
     </div>
 </div>
 
+<section class="container mx-auto mt-10">
+    <h2 class="text-2xl text-center font-bold mt-10 mb-5">Publicaciones</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @foreach ($posts as $post)
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <img src="{{ asset('uploads') . '/' . $post->imagen }}" alt="Post Image" class="w-full h-48 object-cover rounded-lg mb-4">
+                <h3 class="text-lg font-semibold mb-2">{{ $post->titulo }}</h3>
+                <p class="text-gray-600">{{ Str::limit($post->descripcion, 100) }}</p>
+            </div>
+        @endforeach
+    </div>
+
+    </h2>
+</section>
+
 @endsection
