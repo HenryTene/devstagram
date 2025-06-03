@@ -48,13 +48,19 @@ class PostController extends Controller
         // ]);
 
         //Otra forma de crear el post
-        $post = new Post();
-        $post->titulo = $request->titulo;
-        $post->descripcion = $request->descripcion;
-        $post->imagen = $request->imagen;
-        $post->user_id = Auth::id();
-        $post->save();
+        // $post = new Post();
+        // $post->titulo = $request->titulo;
+        // $post->descripcion = $request->descripcion;
+        // $post->imagen = $request->imagen;
+        // $post->user_id = Auth::id();
+        // $post->save();
 
+        //Otra forma de crear el post
+        $request->user()->posts()->create([
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'imagen' => $request->imagen,
+        ]);
         return redirect()->route('posts.index',Auth::user()->username);
     }
 }
