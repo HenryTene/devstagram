@@ -31,11 +31,11 @@
 </div>
 
 <section class="container mx-auto mt-10">
-    <h2 class="text-2xl text-center font-bold mt-10 mb-5">Publicaciones</h2>
+    <h2 class="text-2xl text-center font-bold mt-10 mb-5"> Publicaciones </h2>
 
     @if ($posts->count())
 
-        <p class="text-center text-gray-500 mb-5">Total de publicaciones: {{ $posts->count() }}</p>
+        {{-- <p class="text-center text-gray-500 mb-5">Total de publicaciones: {{ $user->$posts->count() }}</p> --}}
 
          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach ($posts as $post)
