@@ -38,7 +38,7 @@
                     @enderror
                 </div>
 
-                 <div class="mb-5">
+                <div class="mb-5">
                     <label for="descripcion" class="mb-2 block uppercase text-gray-500 font-bold">
                         Descripción
                     </label>
