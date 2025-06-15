@@ -23,4 +23,9 @@ class Post extends Model
             'username',
         ]);
     }
+
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class);
+    }
 }
