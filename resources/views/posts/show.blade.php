@@ -19,12 +19,14 @@
 
             @auth
                 @if ($post->user_id === auth()->user()->id)
-                    <form action="">
-                        <input  type ="text"
+                    <form action="{{route('posts.destroy', $post)}}" method="POST" class="mt-5">
+                        @method('DELETE')
+                        @csrf
+                        <input
                                 type ="submit"
                                 value="Eliminar publicación"
                                 class="bg-red-500 hover:bg-red-600 transition-colors cursor-pointer uppercase font-bold p-3 text-white rounded-lg mt-5"
-                            />
+                            >
                     </form>
                 @endif
             @endauth
