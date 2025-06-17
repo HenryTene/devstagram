@@ -10,13 +10,12 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\File;
+
+
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
-
 use Illuminate\Support\Facades\Log; // Importante para registrar errores
-use Illuminate\Database\QueryException; // Para errores de base de datos
-use Illuminate\Auth\Access\AuthorizationException; // Para errores de
-use Illuminate\Support\Facades\Gate;
+
 
 class PostController extends Controller
 {
@@ -44,7 +43,7 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        //dd('Creando publicacion');
+
         $request->validate([
             'titulo' => 'required|max:255',
             'descripcion' => 'required',
@@ -77,6 +76,13 @@ class PostController extends Controller
 
         try {
             $post->delete();
+
+            // Eliminar la imagen asociada si existe
+           $imagen_path = public_path('uploads/' . $post->imagen);
+           if(File::exists($imagen_path)) {
+               unlink($imagen_path); // Elimina el archivo de imagen
+
+           }
 
             return redirect()
                 ->route('posts.index', Auth::user()->username)
