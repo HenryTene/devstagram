@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Comentario;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 
 class Post extends Model
 {
@@ -27,5 +29,10 @@ class Post extends Model
     public function comentarios()
     {
         return $this->hasMany(Comentario::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 }
