@@ -19,4 +19,11 @@ class Comentario extends Model
     {
        return $this->belongsTo(User::class)->select('name', 'username');
     }
+
+     public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
+
+
 }
