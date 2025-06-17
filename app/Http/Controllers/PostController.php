@@ -10,8 +10,17 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
+
+use Illuminate\Support\Facades\Log; // Importante para registrar errores
+use Illuminate\Database\QueryException; // Para errores de base de datos
+use Illuminate\Auth\Access\AuthorizationException; // Para errores de
+use Illuminate\Support\Facades\Gate;
+
 class PostController extends Controller
 {
+    use AuthorizesRequests;
     public function __construct()
     {
         $this->middleware('auth')->except('index', 'show');
@@ -41,22 +50,7 @@ class PostController extends Controller
             'descripcion' => 'required',
             'imagen' => 'required', // Validación de imagen
         ]);
-        // Post::create([
-        //     'titulo' => $request->titulo,
-        //     'descripcion' => $request->descripcion,
-        //     'imagen' => $request->imagen,
-        //     'user_id' => Auth::id(),
-        // ]);
 
-        //Otra forma de crear el post
-        // $post = new Post();
-        // $post->titulo = $request->titulo;
-        // $post->descripcion = $request->descripcion;
-        // $post->imagen = $request->imagen;
-        // $post->user_id = Auth::id();
-        // $post->save();
-
-        //Otra forma de crear el post
         $request->user()->posts()->create([
             'titulo' => $request->titulo,
             'descripcion' => $request->descripcion,
@@ -74,8 +68,28 @@ class PostController extends Controller
         ]);
     }
 
+
+
+
     public function destroy(Post $post)
     {
-        dd('Eliminando publicacion', $post->id);
+        $this->authorize('delete', $post);
+
+        try {
+            $post->delete();
+
+            return redirect()
+                ->route('posts.index', Auth::user()->username)
+                ->with('mensaje', 'Post eliminado correctamente');
+
+        } catch (\Exception $e) {
+            Log::error('Error al eliminar post: ' . $e->getMessage());
+
+            return back()->with('mensaje_error', 'No se pudo eliminar el post.');
+        }
     }
+
+
+
+
 }
