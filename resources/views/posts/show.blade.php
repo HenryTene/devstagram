@@ -36,7 +36,12 @@
                             </form>
                         @endif
                     @endauth
-                    <p>0 likes</p>
+
+                    <p class="inline-flex items-center bg-gray-100 px-3 py-1 rounded-full text-sm shadow-sm">
+                        <span class="text-pink-600 font-bold mr-1">{{ $post->likes->count() }}</span>
+                        <span class="text-gray-600">likes</span>
+                    </p>
+
                 </div>
 
                 <div >
