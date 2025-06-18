@@ -32,6 +32,6 @@ Route::post('/imagenes',[ImagenController::class, 'store'])->name('imagenes.stor
 
 //Like a los posts
 Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store');
-//Deslike a los posts
-//Route::delete('/posts/{post}/like', [LikeController::class, 'destroy'])->name('posts.likes.destroy');
+//Dislike a los posts
+Route::delete('/posts/{post}/like', [LikeController::class, 'destroy'])->name('posts.likes.destroy');
 
