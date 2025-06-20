@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ComentarioController;
 
@@ -34,4 +35,8 @@ Route::post('/imagenes',[ImagenController::class, 'store'])->name('imagenes.stor
 Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('posts.likes.store');
 //Dislike a los posts
 Route::delete('/posts/{post}/like', [LikeController::class, 'destroy'])->name('posts.likes.destroy');
+
+//Rutas para el perfil
+Route::get('/{user:username}/editar-perfil', [PerfilController::class, 'index'])->name('perfil.index');
+Route::post('/{user:username}/editar-perfil', [PerfilController::class, 'store'])->name('perfil.store');
 
