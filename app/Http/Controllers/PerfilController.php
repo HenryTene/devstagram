@@ -14,6 +14,6 @@ class PerfilController extends Controller
 
     public function index()
     {
-        dd('Aqui se edita el perfil...');
+        return view('perfil.index');
     }
 }
