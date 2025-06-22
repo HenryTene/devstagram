@@ -7,7 +7,8 @@
 
     <div class="md:flex md:justify-center">
         <div class="md:w-1/2 bg-white shadow p-6 rounded-lg">
-            <form class="mt-10 md:mt-0" action="">
+             <form method="POST" class="mt-10 md:mt-0" action="{{ route('perfil.store') }}" enctype="multipart/form-data">
+                @csrf
                 <div class="mb-5">
                     <label for="username" class="mb-2 block uppercase text-gray-500 font-bold">
                         Username
