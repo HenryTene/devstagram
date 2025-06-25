@@ -64,6 +64,13 @@ class User extends Authenticatable
                     ->withTimestamps();
     }
 
+    //Comprobar si un usario ya sigue a otro
+    public function siguiendo(User $user)
+    {
+        //return $this->followers()->where('follower_id', $user->id)->exists();
+        return $this->followers->contains($user->id);
+    }
+
     //Almacenar los que seguimos
     public function following()
     {
