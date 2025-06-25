@@ -13,4 +13,10 @@ class FollowerController extends Controller
         return back()->with('success', 'Ahora sigues a ' . $user->username);
     }
 
+    public function destroy(User $user, Request $request)
+    {
+        $user->followers()->detach($request->user()->id);
+        return back()->with('success', 'dejaste de seguir a ' .  $user->username);
+    }
+
 }
