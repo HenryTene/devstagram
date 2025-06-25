@@ -47,32 +47,34 @@
 
             @auth
                 @if ($user->id !== auth()->user()->id)
-
-                    <form
-                        action="{{ route('users.follow', $user) }}"
-                        method="POST"
-                        class="mt-5"
-                    >
-                        @csrf
-                    <input
-                            type="submit"
-                            class="bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs uppercase px-3 py-1 rounded-lg cursor-pointer shadow-sm transition duration-200 mt-1 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
-                            value="Seguir"
-                        />
-                    </form>
-                    <form
-                         action="{{ route('users.unfollow', $user) }}"
-                        method="POST"
-                        class="mt-5"
-                    >
-                        @csrf
-                        @method('DELETE')
-                    <input
-                            type="submit"
-                            class="bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs uppercase px-3 py-1 rounded-lg cursor-pointer shadow-sm transition duration-200 mt-1 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
-                            value="Dejar de seguir"
-                        />
-                    </form>
+                    @if (!$user->siguiendo(Auth::user()))
+                        <form
+                            action="{{ route('users.follow', $user) }}"
+                            method="POST"
+                            class="mt-5"
+                        >
+                            @csrf
+                        <input
+                                type="submit"
+                                class="bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs uppercase px-3 py-1 rounded-lg cursor-pointer shadow-sm transition duration-200 mt-1 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
+                                value="Seguir"
+                            />
+                        </form>
+                    @else
+                        <form
+                            action="{{ route('users.unfollow', $user) }}"
+                            method="POST"
+                            class="mt-5"
+                        >
+                            @csrf
+                            @method('DELETE')
+                        <input
+                                type="submit"
+                                class="bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs uppercase px-3 py-1 rounded-lg cursor-pointer shadow-sm transition duration-200 mt-1 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2"
+                                value="Dejar de seguir"
+                            />
+                        </form>
+                    @endif
 
                 @endif
 
