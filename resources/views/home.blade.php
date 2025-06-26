@@ -2,7 +2,7 @@
 
 @section('titulo')
 
-Página Principal
+Página Principal Home
 
 @endsection
 
