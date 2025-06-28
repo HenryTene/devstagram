@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function __invoke()
     {
         // Obtener a quienes seguimos
-        dd(Auth::user()->following->pluck('id')->toArray());
+        dd(Auth::user()->followings->pluck('id')->toArray());
         return view('home');
     }
 }
