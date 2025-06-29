@@ -14,7 +14,9 @@ class HomeController extends Controller
         $ids = Auth::user()->followings->pluck('id')->toArray();
         $posts = Post::whereIn('user_id', $ids)->paginate(20);
 
-        dd($posts);
-        return view('home');
+        //dd($posts);
+        return view('home', [
+            'posts' => $posts
+        ]);
     }
 }
