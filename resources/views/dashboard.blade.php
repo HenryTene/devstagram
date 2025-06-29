@@ -89,22 +89,21 @@
 
     @if ($posts->count())
 
-        {{-- <p class="text-center text-gray-500 mb-5">Total de publicaciones: {{ $user->$posts->count() }}</p> --}}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach ($posts as $post)
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <a href="{{ route('posts.show', ['post'=> $post, 'user'=>$user]) }}" class="block mb-4">
+                        <img src="{{ asset('uploads') . '/' . $post->imagen }}" alt="Post Image" class="w-full h-48 object-cover rounded-lg mb-4">
+                    </a>
+                    <h3 class="text-lg font-semibold mb-2">{{ $post->titulo }}</h3>
+                    <p class="text-gray-600">{{ Str::limit($post->descripcion, 100) }}</p>
+                </div>
+            @endforeach
+        </div>
 
-         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        @foreach ($posts as $post)
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <a href="{{ route('posts.show', ['post'=> $post, 'user'=>$user]) }}" class="block mb-4">
-                <img src="{{ asset('uploads') . '/' . $post->imagen }}" alt="Post Image" class="w-full h-48 object-cover rounded-lg mb-4">
-                </a>
-                <h3 class="text-lg font-semibold mb-2">{{ $post->titulo }}</h3>
-                <p class="text-gray-600">{{ Str::limit($post->descripcion, 100) }}</p>
-            </div>
-        @endforeach
-            </div>
-            <div class="my-10">
-                {{ $posts->links() }}
-            </div>
+        <div class="my-10">
+            {{ $posts->links() }}
+        </div>
     @else
         <p class="text-gray-600  uppercase text-sm text-center font-bold">No hay publicaciones disponibles.</p>
     @endif
