@@ -10,7 +10,7 @@ Página Principal Home
 @section('contenido')
 
 
-    @if ($posts->count())
+    {{-- @if ($posts->count())
 
          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($posts as $post)
@@ -19,7 +19,7 @@ Página Principal Home
                         <img src="{{ asset('uploads') . '/' . $post->imagen }}" alt="Post Image" class="w-full h-48 object-cover rounded-lg mb-4">
                     </a>
                     <h3 class="text-lg font-semibold mb-2">{{ $post->titulo }}</h3>
-                    {{-- <p class="text-gray-600">{{ Str::limit($post->descripcion, 100) }}</p> --}}
+
                 </div>
             @endforeach
         </div>
@@ -35,8 +35,8 @@ Página Principal Home
         </p>
 
 
-    @endif
-
+    @endif --}}
+    <x-listar-post />
 
 
 @endsection
