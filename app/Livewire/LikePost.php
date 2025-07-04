@@ -20,8 +20,6 @@ class LikePost extends Component
     public function like()
     {
         if (!Auth::check()) {
-            // For now, we'll just prevent the action for non-logged in users.
-            // A more complete solution would be to redirect to the login page.
             return;
         }
 
